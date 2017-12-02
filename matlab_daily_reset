@@ -1,0 +1,4 @@
+%this is a matlab script
+function daily_intake = daily_reset(x)
+daily_intake=0;
+end
