@@ -1,0 +1,12 @@
+#making calc_water_goal
+#for now the user will just input weight but hopefully the formula can be more complex later
+import sys
+import math
+def calc_water_goal(weight):
+    daily_target=weight*(2.0/3.0)*29.5735
+    return daily_target
+
+
+data = input("please enter your weight in pounds: ")
+
+print "you should drink: %d ml" %calc_water_goal(data)
