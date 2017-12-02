@@ -22,7 +22,7 @@ function varargout = userInputPage(varargin)
 
 % Edit the above text to modify the response to help userInputPage
 
-% Last Modified by GUIDE v2.5 02-Dec-2017 10:48:59
+% Last Modified by GUIDE v2.5 02-Dec-2017 15:55:49
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -52,6 +52,12 @@ function userInputPage_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to userInputPage (see VARARGIN)
 
+titleImage = imread('Chug2PuffTitle.png');
+image(titleImage);
+set(handles.titleAxes,'xtick',[],'ytick',[]);
+axis off;
+axis image;
+
 % Choose default command line output for userInputPage
 handles.output = hObject;
 
@@ -79,6 +85,12 @@ function ageTextBox_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+age = str2double(get(handles.ageTextBox,'String'));
+handles.age = age; 
+
+handles.output = hObject;
+guidata(hObject, handles);
+
 % Hints: get(hObject,'String') returns contents of ageTextBox as text
 %        str2double(get(hObject,'String')) returns contents of ageTextBox as a double
 end
@@ -104,6 +116,13 @@ function genderTextBox_Callback(hObject, eventdata, handles)
 
 % Hints: contents = cellstr(get(hObject,'String')) returns genderTextBox contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from genderTextBox
+
+gender = get(handles.genderTextBox, 'String');
+handles.gender = gender;
+
+handles.output = hObject;
+guidata(hObject, handles);
+
 end
 
 % --- Executes during object creation, after setting all properties.
@@ -125,6 +144,12 @@ function exerciseTextBox_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+exercise = get(handles.exerciseTextBox,'String');
+handles.exercise = exercise;
+
+handles.output = hObject;
+guidata(hObject, handles);
+
 % Hints: contents = cellstr(get(hObject,'String')) returns exerciseTextBox contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from exerciseTextBox
 end
@@ -142,11 +167,52 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 end
 
+function weightTextBox_Callback(hObject, eventdata, handles)
+% hObject    handle to weightTextBox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+weight = str2double(get(handles.weightTextBox,'String'));
+handles.weight = weight; 
+
+handles.output = hObject;
+guidata(hObject, handles);
+
+% Hints: get(hObject,'String') returns contents of weightTextBox as text
+%        str2double(get(hObject,'String')) returns contents of weightTextBox as a double
+
+end
+
+% --- Executes during object creation, after setting all properties.
+function weightTextBox_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to weightTextBox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+end
+
+
 % --- Executes on button press in calculateButton.
 function calculateButton_Callback(hObject, eventdata, handles)
 % hObject    handle to calculateButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+age = handles.age;
+gender = handles.gender; save('check2.mat','gender');
+
+exercise = handles.exercise;
+weight = handles.weight;
+
+totalIntakeGoal = calc_water_goal(age, gender, exercise, weight);
+handles.totalIntakeGoal = totalIntakeGoal; 
+setappdata(0,'totalIntakeGoal',totalIntakeGoal);
 
 close(userInputPage);
 fishPage;

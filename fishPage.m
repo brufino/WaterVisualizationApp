@@ -53,6 +53,14 @@ function fishPage_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to fishPage (see VARARGIN)
 
+axes(handles.smallTitleAxes);
+titleImage = imread('Chug2PuffTitleText.png');
+set(handles.smallTitleAxes,'xtick',[],'ytick',[]);
+image(titleImage);
+axis off;
+axis image;
+
+axes(handles.fishImageAxes);
 fishImage0 = imread('waterVisualizationStep0.png');
 image(fishImage0);
 fishIndex = 0; 
@@ -61,7 +69,7 @@ set(handles.fishImageAxes,'xtick',[],'ytick',[]);
 axis off;
 axis image;
 
-totalIntakeNum = 2500; % Default user total for testing
+totalIntakeNum = getappdata(0,'totalIntakeGoal'); % Calculated ideal user consumption for water intake, from user input in userInputPage.m
 handles.totalIntakeNum = totalIntakeNum; 
 set(handles.totalIntake,'String',num2str(totalIntakeNum));
 
