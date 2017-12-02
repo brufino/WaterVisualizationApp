@@ -1,0 +1,24 @@
+#def water_input
+#this should be easy
+
+import sys
+import math
+
+def water_input(mlnew, total):
+    total+= mlnew
+    return total
+def difference(total, daily_target) :
+        return (daily_target-total)
+total=0 #should equal something in the code before
+daily_target=3000
+mlnew=input ("Update us on how much you've drank (in ml): ")
+total= water_input(mlnew,total)
+
+
+print "your total intake thus far is: %d ml" %total
+if (total<=daily_target):
+    print "you are %d ml away from your goal!" %difference(total, daily_target)
+else :
+    print "you've done it for today! good work."
+
+    
