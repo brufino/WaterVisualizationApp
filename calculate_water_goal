@@ -1,12 +1,41 @@
-#making calc_water_goal
-#for now the user will just input weight but hopefully the formula can be more complex later
-import sys
-import math
-def calc_water_goal(weight):
-    daily_target=weight*(2.0/3.0)*29.5735
-    return daily_target
+function daily_target= calc_water_goal()
+prompt='What is your weight in pounds?';
+weight=input(prompt)
+prompt2='What is your gender (M/F)?';
+gender=input(prompt2, 's')
+prompt3='what is your age?';
+age=input(prompt3)
+prompt4='do you exercise frequently (Y/N)?';
+exercise=input(prompt4,'s')
 
-
-data = input("please enter your weight in pounds: ")
-
-print "you should drink: %d ml" %calc_water_goal(data)
+total1=0;
+total2=0;
+totalE=0;
+if age>=19
+    if gender == 'M'
+        total1=3700
+    else
+        total2=2700
+    end
+elseif 14<=age<19
+    if gender == 'M'
+        total1=88*29.5735
+    else
+        total2=64*29.5735
+    end
+elseif 9<=age<14
+    if gender =='M'
+        total1=64*29.5735
+    else
+        total2=56*29.5735
+    end
+else
+    total1=40*29.5735
+    total2=40*29.5735
+end
+total_weight=weight*2.0/3.0*29.5735
+if exercise =='Y'
+    totalE=500;
+end
+daily_target= ((total1+total2+totalE)+total_weight)/2
+end
