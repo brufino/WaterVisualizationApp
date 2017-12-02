@@ -1,0 +1,10 @@
+function fish_pic= fish_change(total, daily_target)
+if((1.0/3.0)*daily_target>=total)
+    fish_pic=0 %insert pic 1
+end
+if((1.0/3.0)*daily_target<total && total<=(2.0/3.0)*daily_target)
+    fish_pic=1 %insert pic 2
+end
+if (total>daily_target*(2.0/3.0))
+    fish_pic=2 %insert pic 3
+end
