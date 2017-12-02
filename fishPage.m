@@ -22,7 +22,7 @@ function varargout = fishPage(varargin)
 
 % Edit the above text to modify the response to help fishPage
 
-% Last Modified by GUIDE v2.5 02-Dec-2017 08:37:48
+% Last Modified by GUIDE v2.5 02-Dec-2017 10:46:44
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -68,6 +68,8 @@ set(handles.totalIntake,'String',num2str(totalIntakeNum));
 dailyIntakeNum = 0; 
 handles.dailyIntakeNum = dailyIntakeNum;
 set(handles.dailyIntake,'String',num2str(dailyIntakeNum));
+
+set(handles.currentDate,'String',date);
 
 % Choose default command line output for fishPage
 handles.output = hObject;
@@ -125,17 +127,17 @@ function goButton_Callback(hObject, eventdata, handles)
 
 currentIntake = str2double(get(handles.userIntakeInput,'String')); % Taking in the added cup/amount of water in textbox
 dailyIntakeNum = handles.dailyIntakeNum; % Taking the current, stored daily intake
-dailyIntakeNum = dailyIntakeNum + currentIntake; % Adding the two to get a new, accumulated value
-
+dailyIntakeNum = water_input(currentIntake, dailyIntakeNum); % Adding the two to get a new, accumulated value
 
 set(handles.dailyIntake,'String',num2str(dailyIntakeNum)); % Update GUI current daily
-handles.dailyIntakeNum = dailyIntakeNum;
+handles.dailyIntakeNum = dailyIntakeNum; 
 
 totalIntake = str2double(get(handles.totalIntake,'String'));
 
 fishIndex = fish_change(totalIntake, dailyIntakeNum);
 handles.fishIndex = fishIndex; % Update fish index
 save('check.mat','currentIntake','dailyIntakeNum','totalIntake','fishIndex');
+
 % Change intake values
 
 handles.output = hObject; % Update all the data
@@ -161,7 +163,4 @@ axis image;
         
 
 
-
-
 end
-
