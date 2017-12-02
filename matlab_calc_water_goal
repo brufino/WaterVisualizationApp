@@ -1,0 +1,5 @@
+function daily_target= calc_water_goal()
+prompt='What is your weight in pounds?';
+weight=input(prompt)
+daily_target= weight*2.0/3.0*29.5735
+end
