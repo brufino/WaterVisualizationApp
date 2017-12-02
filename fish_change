@@ -1,0 +1,21 @@
+import sys
+import math
+import datetime
+
+def fish_change (total, daily_target):
+    if ((0.33*daily_target)>=total>=0):
+        displayimage=0#put png 1 here if possible
+        return displayimage 
+    elif ((0.33*daily_target)<total<=(0.66*daily_target)):
+        displayimage= 1 #put png2 here if possible
+        return displayimage
+    else:
+        displayimage=2 #put png 3 here if possible
+        return displayimage
+    return
+
+
+#test values
+total=1200
+daily_target=3000
+print fish_change(total,daily_target)
