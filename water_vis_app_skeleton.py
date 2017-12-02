@@ -29,9 +29,8 @@ if (current_time == "00:00:00"):
 
 if __name__ == "__main__":
 
-    while True: 
-        calc_water_goal():
-
+    do calc_water_goal() while True: 
+    
         if( //a GUI value is entered// ): 
         	water_input(val_from_GUI)
         	fish_change(water_goal, val_from_GUI)
@@ -40,4 +39,4 @@ if __name__ == "__main__":
             daily_reset():
         else(): 
         	continue
-       
+
