@@ -1,0 +1,69 @@
+#main
+import sys
+import math
+import time
+
+#####################define functions######################################
+def daily_reset():
+    total=0
+    return total
+
+def fish_change (total, daily_target):
+    if ((0.33*daily_target)>=total>=0):
+        displayimage=0#put png 1 here if possible
+        return displayimage 
+    elif ((0.33*daily_target)<total<=(0.66*daily_target)):
+        displayimage= 1 #put png2 here if possible
+        return displayimage
+    else:
+        displayimage=2 #put png 3 here if possible
+        return displayimage
+    return
+
+def calc_water_goal():
+    weight = input("please enter your weight in pounds: ")
+    daily_target=weight*(2.0/3.0)*29.5735
+    return daily_target
+
+def water_input(mlnew, total):
+    total+= mlnew
+    return total
+
+def difference(total, daily_target) :
+        return (daily_target-total)
+#############################################################################
+
+    
+total=0 #should equal something in the code before
+daily_target=3000
+mlnew=input ("Update us on how much you've drank (in ml): ")
+total= water_input(mlnew,total)
+
+
+print "your total intake thus far is: %d ml" %total
+if (total<=daily_target):
+    print "you are %d ml away from your goal!" %difference(total, daily_target)
+else :
+    print "you've done it for today! good work."
+
+
+if __name__ == "__main__":
+
+    daily_target=calc_water_goal()
+    current_day=strftime("%d")
+    current_intake = 0
+    while True: 
+    	# activates if a value is passed in from the GUI
+        if ( //a GUI value is entered// ): 
+        	current_intake=water_input(VALFROMGUI,current_intake) #EDIT THIS LINE
+        	guiIMAGE=fish_change(current_intake, daily_target)
+        	#CHANGE GUI IMAGE
+
+        # activates if the date does not match the one 
+        # initialized in the beginning of the script
+        if(current_day != strftime("%d"))
+            current_intake=daily_reset():
+            current_day = strftime("%d")
+        else():
+            continue
+        #give user quit option
