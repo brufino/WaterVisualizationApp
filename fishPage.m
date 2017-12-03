@@ -22,7 +22,7 @@ function varargout = fishPage(varargin)
 
 % Edit the above text to modify the response to help fishPage
 
-% Last Modified by GUIDE v2.5 02-Dec-2017 10:46:44
+% Last Modified by GUIDE v2.5 02-Dec-2017 21:05:43
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -68,6 +68,16 @@ handles.fishIndex = fishIndex;
 set(handles.fishImageAxes,'xtick',[],'ytick',[]);
 axis off;
 axis image;
+
+counter = 0;
+handles.counter = counter;
+
+storedWaterData = zeros(30,2);
+for i = 1:30
+        storedWaterData(i,1) = i; % Day counter 
+end
+
+handles.storedWaterData = storedWaterData; 
 
 totalIntakeNum = getappdata(0,'totalIntakeGoal'); % Calculated ideal user consumption for water intake, from user input in userInputPage.m
 handles.totalIntakeNum = totalIntakeNum; 
@@ -169,6 +179,51 @@ set(handles.fishImageAxes,'xtick',[],'ytick',[]);
 axis off;
 axis image;
         
+
+end
+
+
+% --- Executes on button press in endDayButton.
+function endDayButton_Callback(hObject, eventdata, handles)
+% hObject    handle to endDayButton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+counter = handles.counter; 
+counter = counter + 1;
+handles.counter = counter; 
+
+dailyIntakeNum = handles.dailyIntakeNum; 
+storedWaterData = handles.storedWaterData; 
+storedWaterData = writeToCSV(counter, storedWaterData, dailyIntakeNum);
+handles.storedWaterData = storedWaterData; 
+
+dailyIntakeNum = 0; 
+handles.dailyIntakeNum = dailyIntakeNum;
+set(handles.dailyIntake,'String',num2str(dailyIntakeNum));
+
+% Choose default command line output for fishPage
+handles.output = hObject;
+
+% Update handles structure
+guidata(hObject, handles);
+
+
+end
+
+
+% --- Executes on button press in graphButton.
+function graphButton_Callback(hObject, eventdata, handles)
+% hObject    handle to graphButton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+[col1, col2] = graphData();
+handles.col1 = col1; handles.col2 = col2; 
+setappdata(0,'col1',col1);
+setappdata(0,'col2',col2);
+
+graphPage;
 
 
 end
