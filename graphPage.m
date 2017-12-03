@@ -71,7 +71,7 @@ line([1,30],[totalIntakeGoal,totalIntakeGoal]);
 title('Daily Water Consumption')
 xlabel('December Progress')
 ylabel('Amount of Water Consumed (mL)')
-legend('bar = amount drank', 'line = target')
+legend('Daily Intake', 'Reccomended Intake')
 axis([1 30 0 8000])
 
 hold off; 

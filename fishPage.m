@@ -165,13 +165,16 @@ guidata(hObject, handles);
 fishImage0 = imread('waterVisualizationStep0.png');
 fishImage1 = imread('waterVisualizationStep1.png');
 fishImage2 = imread('waterVisualizationStep2.png');
+fishImage3 = imread('waterVisualizationStep3.png');
 
 if fishIndex == 0
     image(fishImage0);
 elseif fishIndex == 1
     image(fishImage1);
-else
+elseif fishIndex == 2
     image(fishImage2);
+else
+    image(fishImage3);
 end
 
 
@@ -201,6 +204,14 @@ handles.storedWaterData = storedWaterData;
 dailyIntakeNum = 0; 
 handles.dailyIntakeNum = dailyIntakeNum;
 set(handles.dailyIntake,'String',num2str(dailyIntakeNum));
+
+fishIndex = 0; 
+handles.fishIndex = fishIndex; 
+fishImage0 = imread('waterVisualizationStep0.png');
+image(fishImage0);
+set(handles.fishImageAxes,'xtick',[],'ytick',[]);
+axis off;
+axis image;
 
 % Choose default command line output for fishPage
 handles.output = hObject;
