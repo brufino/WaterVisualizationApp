@@ -68,6 +68,12 @@ totalIntakeGoal = getappdata(0,'totalIntakeGoal');
 axes(handles.graphAxes); hold on; 
 bar(col1, col2);
 line([1,30],[totalIntakeGoal,totalIntakeGoal]); 
+title('Daily Water Consumption')
+xlabel('December Progress')
+ylabel('Amount of Water Consumed (mL)')
+legend('bar = amount drank', 'line = target')
+axis([1 30 0 8000])
+
 hold off; 
 
 % Choose default command line output for graphPage
